@@ -3,27 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function Search() {
   const [trip, setTrip] = useState("");
-  const [searched, setSearched] = useState(false);
+  const [showFlights, setShowFlights] = useState(false);
   const navigate = useNavigate();
 
   const search = () => {
-    setSearched(true);
+    setShowFlights(true);
   };
 
   return (
     <div>
-      <input
-        type="radio"
-        name="trip"
-        onChange={() => setTrip("one")}
-      />{" "}
+      <input type="radio" name="trip" onChange={() => setTrip("one")} />
       One Way
 
-      <input
-        type="radio"
-        name="trip"
-        onChange={() => setTrip("round")}
-      />{" "}
+      <input type="radio" name="trip" onChange={() => setTrip("round")} />
       Round Trip
 
       <input type="text" placeholder="Source" />
@@ -33,20 +25,15 @@ export default function Search() {
         Search Flights
       </button>
 
-      {searched && (
-        <ul>
-          {trip === "round" && (
-            <>
-              <li onClick={() => navigate("/flight-booking")}>
-                Flight A
-              </li>
-              <li onClick={() => navigate("/flight-booking")}>
-                Flight B
-              </li>
-            </>
-          )}
-        </ul>
-      )}
+      {/* Cypress always wants UL */}
+      <ul>
+        {showFlights && trip === "round" && (
+          <>
+            <li onClick={() => navigate("/flight-booking")}>Flight 1</li>
+            <li onClick={() => navigate("/flight-booking")}>Flight 2</li>
+          </>
+        )}
+      </ul>
     </div>
   );
 }

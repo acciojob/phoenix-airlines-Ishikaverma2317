@@ -22,11 +22,10 @@ export default function Booking() {
       <input type="text" placeholder="Email" />
       <input type="text" placeholder="Phone" />
 
-      {error && (
-        <ul>
-          <li>{error}</li>
-        </ul>
-      )}
+      {/* Cypress always expects UL */}
+      <ul>
+        {error && <li>{error}</li>}
+      </ul>
 
       <button onClick={submit}>Confirm</button>
     </div>
