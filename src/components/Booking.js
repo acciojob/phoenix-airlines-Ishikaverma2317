@@ -1,13 +1,18 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Booking() {
-  const dispatch = useDispatch();
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const submit = () => {
-    dispatch({ type: "BOOK", payload: { name: "test" } });
+    const inputs = document.querySelectorAll("input[type='text']");
+    for (let i of inputs) {
+      if (!i.value) {
+        setError("All fields required");
+        return;
+      }
+    }
     navigate("/confirmation");
   };
 
@@ -16,6 +21,13 @@ export default function Booking() {
       <input type="text" placeholder="Name" />
       <input type="text" placeholder="Email" />
       <input type="text" placeholder="Phone" />
+
+      {error && (
+        <ul>
+          <li>{error}</li>
+        </ul>
+      )}
+
       <button onClick={submit}>Confirm</button>
     </div>
   );

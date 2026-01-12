@@ -8,7 +8,7 @@ import Confirmation from "./Confirmation";
 export default function App() {
   return (
     <>
-      <h1>Flight Booking App</h1>
+      <h1>Welcome to Flight Booking App</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/flight-search" element={<Search />} />

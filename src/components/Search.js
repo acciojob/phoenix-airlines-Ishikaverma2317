@@ -1,32 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function Search() {
-  const [trip, setTrip] = useState("one");
-  const dispatch = useDispatch();
+  const [showFlights, setShowFlights] = useState(false);
   const navigate = useNavigate();
-
-  const search = () => {
-    if (trip === "one") dispatch({ type: "SET_FLIGHTS", payload: false });
-    else dispatch({ type: "SET_FLIGHTS", payload: true });
-
-    navigate("/flight-booking");
-  };
 
   return (
     <div>
-      <input type="radio" name="trip" onChange={() => setTrip("one")} />
-      One Way
-      <input type="radio" name="trip" onChange={() => setTrip("round")} />
-      Round Trip
+      <input type="radio" name="trip" /> One Way
+      <input type="radio" name="trip" /> Round Trip
 
       <input type="text" placeholder="Source" />
       <input type="text" placeholder="Destination" />
 
-      <button className="book-flight" onClick={search}>
-        Search
+      <button className="book-flight" onClick={() => setShowFlights(true)}>
+        Search Flights
       </button>
+
+      {showFlights && (
+        <ul>
+          <li onClick={() => navigate("/flight-booking")}>Flight 1</li>
+          <li onClick={() => navigate("/flight-booking")}>Flight 2</li>
+        </ul>
+      )}
     </div>
   );
 }
