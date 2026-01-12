@@ -1,14 +1,14 @@
 import { createStore } from "redux";
 
 const initialState = {
-  search: {},
-  booking: {}
+  flightsAvailable: false,
+  booking: {},
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case "SEARCH":
-      return { ...state, search: action.payload };
+    case "SET_FLIGHTS":
+      return { ...state, flightsAvailable: action.payload };
     case "BOOK":
       return { ...state, booking: action.payload };
     default:
