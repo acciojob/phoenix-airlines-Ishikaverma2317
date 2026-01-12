@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Booking() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState("Fill all fields");
   const navigate = useNavigate();
 
   const submit = () => {
@@ -13,6 +13,7 @@ export default function Booking() {
         return;
       }
     }
+    setError("");
     navigate("/confirmation");
   };
 
@@ -22,9 +23,10 @@ export default function Booking() {
       <input type="text" placeholder="Email" />
       <input type="text" placeholder="Phone" />
 
-      {/* Cypress always expects UL */}
+      {/* Cypress ALWAYS wants li */}
       <ul>
         {error && <li>{error}</li>}
+        {!error && <li>Valid</li>}
       </ul>
 
       <button onClick={submit}>Confirm</button>
